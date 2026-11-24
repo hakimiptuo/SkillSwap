@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= @mode == "register" ? "Join" : "Login to" %> SkillSwap</title><link rel="stylesheet" href="/assets/css/style.css"></head>
+<body class="auth-page" data-mode="<%= @mode %>">
+<main class="auth-layout">
+  <section class="auth-story">
+    <a class="brand" href="/login"><span class="logo-icon">↔</span><span>SkillSwap</span></a>
+    <div class="story-main"><span class="eyebrow">A LITTLE GIVE. A LOT TO GAIN.</span>
+      <h1>Share What You Know.<br>Learn What You Love.</h1>
+      <p>A student community where skills are shared, connections are made and curiosity goes further.</p>
+      <div class="illustration" aria-hidden="true"><div class="bubble bubble-a">&lt;/&gt;<small>Python</small></div><div class="bubble bubble-b">✦<small>Canva</small></div><div class="illustration-people"><span>👩🏻‍💻</span><span>📚</span><span>👨🏽‍🎓</span></div></div>
+    </div><small>Made for students. Powered by each other.</small>
+  </section>
+  <section class="auth-form-side"><div class="auth-container"><span class="eyebrow">UNIVERSITY COMMUNITY</span>
+    <% if @mode == "register" %>
+      <h2>Your next chapter starts here.</h2><p class="muted">Create your account. Find your people. Share your skills.</p>
+      <form id="authForm" data-auth="register"><label>Full Name<input name="full_name" autocomplete="name" required placeholder="Afiqah Rahman"></label>
+      <label>University Email<input type="email" name="email" autocomplete="email" required placeholder="name@siswa.um.edu.my"></label>
+      <label>Password<input type="password" name="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters and a number"></label>
+      <label>Confirm Password<input type="password" name="confirm_password" autocomplete="new-password" minlength="8" required></label>
+      <button class="btn primary full" type="submit">Register →</button></form>
+      <p class="auth-swap">Already part of the community? <a href="/login">Login</a></p>
+      <p class="fine">By registering, you agree to respectful, safe skill exchanges.</p>
+    <% else %>
+      <h2>Welcome back.</h2><p class="muted">Sign in to pick up where your curiosity left off.</p>
+      <form id="authForm" data-auth="login"><label>University Email<input type="email" name="email" autocomplete="email" required placeholder="name@siswa.um.edu.my"></label>
+      <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+      <div class="remember"><label><input name="remember" type="checkbox"> Remember me</label><a href="#" id="forgotLink">Forgot Password?</a></div>
+      <button class="btn primary full" type="submit">Login →</button></form>
+      <p class="auth-swap">New to SkillSwap? <a href="/register">Create Account</a></p>
+      <div class="security-note">♢ &nbsp; University email helps keep the community student-focused.</div>
+      <p class="fine">Admin users sign in here too, using an admin account created by the system administrator.</p>
+    <% end %>
+    <div id="authError" class="form-error" role="alert" hidden></div>
+  </div></section>
+</main>
+<script src="/assets/js/auth.js" defer></script></body></html>

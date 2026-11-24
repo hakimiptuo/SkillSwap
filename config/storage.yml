@@ -1,0 +1,10 @@
+
+# Local file storage for SkillSwap
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+# Temporary file storage for testing
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>

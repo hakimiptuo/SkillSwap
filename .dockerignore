@@ -1,0 +1,22 @@
+.git
+.env
+.env.*
+!.env.example
+log
+tmp
+node_modules
+vendor/bundle
+.bundle
+README.md
+docs
+test
+
+# Rails private keys
+/config/master.key
+/config/credentials/*.key
+
+# Local database backups
+/backups/
+
+# Production environment secrets
+.env.production

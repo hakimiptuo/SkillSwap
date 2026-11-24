@@ -1,0 +1,39 @@
+
+FROM ruby:3.3-slim
+
+# Rails production environment
+ENV APP_HOME=/skillswap \
+    RAILS_ENV=production \
+    RACK_ENV=production \
+    RAILS_LOG_TO_STDOUT=true \
+    BUNDLE_WITHOUT=development:test \
+    BUNDLE_DEPLOYMENT=true
+
+# Install required system dependencies
+RUN apt-get update -qq \
+    && apt-get install -y --no-install-recommends \
+       build-essential \
+       default-libmysqlclient-dev \
+       pkg-config \
+       libyaml-dev \
+       libssl-dev \
+       curl \
+       ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR $APP_HOME
+
+# Install locked Ruby dependencies
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+# Copy SkillSwap application files
+COPY . .
+
+# Prepare required directories
+RUN mkdir -p tmp/pids tmp/cache log
+
+EXPOSE 3000
+
+# Start Ruby on Rails
+CMD ["bash", "-lc", "bundle exec ruby bin/rails server -b 0.0.0.0 -p 3000"]

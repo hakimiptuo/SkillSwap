@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>SkillSwap – Student Skill Exchange Platform</title>
+
+  <!-- Rails CSRF Protection -->
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- SkillSwap CSS -->
+  <link
+    rel="stylesheet"
+    href="/assets/css/style.css"
+  >
+</head>
+
+<body class="workspace-body">
+
+  <div id="appShell">
+
+    <!-- =====================================
+         LEFT SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+      <!-- SkillSwap Logo -->
+      <a href="/app" class="brand">
+
+        <span class="logo-icon">
+          ↔
+        </span>
+
+        <span>
+          SkillSwap
+        </span>
+
+      </a>
+
+      <!-- Workspace Label -->
+      <div
+        class="nav-overline"
+        id="workspaceName"
+      >
+        STUDENT WORKSPACE
+      </div>
+
+      <!-- Dynamic Navigation -->
+      <nav
+        id="sideNav"
+        aria-label="Main navigation"
+      ></nav>
+
+      <!-- Sidebar Bottom -->
+      <div class="sidebar-bottom">
+
+        <div class="side-quote">
+
+          <span>✧</span>
+
+          <strong>
+            A little sharing.
+            <br>
+            A lot of growing.
+          </strong>
+
+          <small>
+            Your next skill starts here.
+          </small>
+
+        </div>
+
+        <!-- Logout -->
+        <button
+          type="button"
+          class="nav-link"
+          id="logoutButton"
+        >
+
+          <span class="nav-icon">
+            ↪
+          </span>
+
+          Logout
+
+        </button>
+
+      </div>
+
+    </aside>
+
+    <!-- =====================================
+         MAIN APPLICATION AREA
+    ====================================== -->
+
+    <section class="main-area">
+
+      <!-- =====================================
+           TOP NAVIGATION BAR
+      ====================================== -->
+
+      <header class="topbar">
+
+        <!-- Mobile Logo -->
+        <div
+          id="mobileLogo"
+          class="mobile-brand"
+        >
+
+          <span class="logo-icon">
+            ↔
+          </span>
+
+          SkillSwap
+
+        </div>
+
+        <!-- Current Page Title -->
+        <div
+          class="current-page"
+          id="topTitle"
+        >
+          Dashboard
+        </div>
+
+        <!-- Top Right Navigation -->
+        <div class="topbar-right">
+
+          <!-- =====================================
+               FUNCTIONAL SEARCH BAR
+          ====================================== -->
+
+          <form
+            id="globalSearchForm"
+            class="topbar-search"
+            role="search"
+            aria-label="Search SkillSwap"
+          >
+
+            <!-- Search Icon Inside Field -->
+            <button
+              type="submit"
+              class="topbar-search-button"
+              aria-label="Search"
+              title="Search"
+            >
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="8"
+                ></circle>
+
+                <path
+                  d="m21 21-4.35-4.35"
+                ></path>
+
+              </svg>
+
+            </button>
+
+            <!-- Search Input -->
+            <input
+              type="search"
+              id="globalSearchInput"
+              name="q"
+              maxlength="100"
+              placeholder="Search skills, students..."
+              autocomplete="off"
+              aria-label="Search skills or students"
+            >
+
+          </form>
+
+          <!-- =====================================
+               NOTIFICATION BUTTON
+          ====================================== -->
+
+          <button
+            type="button"
+            id="topNotifications"
+            class="icon-btn"
+            title="Notifications"
+            aria-label="Open notifications"
+            data-view="notifications"
+          >
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+
+              <path
+                d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+              ></path>
+
+              <path
+                d="M10 21h4"
+              ></path>
+
+            </svg>
+
+            <!-- Unread Notifications -->
+            <span
+              id="notiBadge"
+              class="count-dot"
+              hidden
+            >
+              0
+            </span>
+
+          </button>
+
+          <!-- =====================================
+               USER INFORMATION
+          ====================================== -->
+
+          <div class="top-user">
+
+            <!-- User Avatar -->
+            <div
+              class="avatar mini"
+              id="topAvatar"
+            >
+              A
+            </div>
+
+            <!-- User Name & University -->
+            <div>
+
+              <strong id="topUser">
+                Student
+              </strong>
+
+              <small id="topUniversity">
+                University
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </header>
+
+      <!-- =====================================
+           DYNAMIC PAGE CONTENT
+      ====================================== -->
+
+      <main
+        id="content"
+        class="page-content"
+        aria-live="polite"
+      >
+
+        <div class="loading-skeleton">
+          Loading your SkillSwap workspace…
+        </div>
+
+      </main>
+
+      <!-- =====================================
+           MOBILE BOTTOM NAVIGATION
+      ====================================== -->
+
+      <nav
+        class="bottom-nav"
+        id="bottomNav"
+        aria-label="Mobile navigation"
+      ></nav>
+
+    </section>
+
+  </div>
+
+  <!-- =====================================
+       MODAL CONTAINER
+  ====================================== -->
+
+  <div
+    id="modalHost"
+    class="modal-host"
+    hidden
+  ></div>
+
+  <!-- =====================================
+       TOAST NOTIFICATIONS
+  ====================================== -->
+
+  <div
+    id="toastHost"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+  <!-- =====================================
+       SKILLSWAP JAVASCRIPT
+  ====================================== -->
+
+  <script
+    src="/assets/js/app.js"
+    defer
+  ></script>
+
+</body>
+</html>

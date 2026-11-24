@@ -1,0 +1,29 @@
+.env
+.env.*
+!.env.example
+.bundle/
+vendor/bundle/
+log/*
+tmp/*
+coverage/
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+db/schema.rb
+db/structure.sql
+*.sqlite3
+reference/*.pdf
+
+# Rails private keys
+/config/master.key
+/config/credentials/*.key
+
+# Local database backups
+/backups/
+
+# Production environment secrets
+.env.production
+
+# Safe production environment template
+!.env.production.example
